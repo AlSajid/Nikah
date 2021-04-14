@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+
+    <title>
+    {% block title %}
+        
+    {% endblock title %}
+    </title>
+    <style>
+
+
+ {% block css %}
+        
+    {% endblock css %}
+    </style>
+    
+   
+        
+</head>
+<body>
+
+    
+    {% if user.is_authenticated %}
+    <div class="w3-top">
+        <div class="w3-bar w3-theme w3-card">
+            <a href="/home" class="w3-bar-item w3-large w3-button w3-wide">নিকাহ</a>
+            <div class="w3-dropdown-hover  w3-right w3-large">
+                <button class="w3-button">স্বাগতম {{request.user.first_name}}</button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                  <a href="/profile" class="w3-bar-item w3-button">প্রোফাইল</a>
+                  <a href="/notifications" class="w3-bar-item w3-button">প্রস্তাবসমূহ</a>
+                  <a href="/accounts/logout" class="w3-bar-item w3-button">লগ আউট</a>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        
+
+{% else %}
+    <div class="w3-top">
+        <div class="w3-bar w3-theme w3-card">
+            <a href="/" class="w3-bar-item w3-large w3-button w3-wide">নিকাহ</a>
+            <a href="/accounts/login">
+                <button class="w3-bar-item w3-button w3-right w3-large">লগইন</button>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    
+    {% block body %}
+        
+    {% endblock body %}
+        
+
+    <footer class="w3-block w3-theme">
+        <small>© সর্বসত্ত্ব সংরক্ষিত ২০২১</small>
+    </footer>
+</body>
+</html>
