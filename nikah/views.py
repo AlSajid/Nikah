@@ -11,15 +11,17 @@ def index(request):
 
 def home(request):
     form = postForm()
+    
     if request.method == "POST":
         form = postForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            messages.success(request,"Post created")
+            obj = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
+            messages.success(request,"প্রকাশিত হয়েছে")
             return redirect('home')
-    return render(request,'home.htm',{'form':form})
+    posts = post.objects.all()
+    return render(request,'home.htm',{'form':form,'posts':posts})
 
 
 def profile(request):

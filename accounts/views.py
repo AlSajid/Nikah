@@ -12,11 +12,15 @@ def createAccount(request):
         password = request.POST['password']
         first_name = name.split()[0]
         last_name = name.split()[1]
+        
         if User.objects.filter(email=email).exists():
             messages.error(request, "এই ইমেইল পূর্বে ব্যবহৃত হয়েছে")
             return redirect('createAccount')
         if User.objects.filter(username=username).exists():
             messages.error(request, "এই ইউজারনেইম পূর্বে ব্যবহৃত হয়েছে")
+            return redirect('createAccount')
+        if " " in username:
+            messages.error(request,"ইউজারনেইমে স্পেস ব্যবহার করা যাবে না")
             return redirect('createAccount')
         else:
             user = User.objects.create_user(username=username,first_name=first_name,last_name=last_name,email=email,password=password)

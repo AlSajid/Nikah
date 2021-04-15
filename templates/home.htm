@@ -14,8 +14,10 @@ h1{
 
 {% block body %}
 
-<div class="form">
-    {% for message in messages %}
+<div class="w3-row form">
+    <div class="w3-card w3-margin w3-padding w3-white w3-third w3-round w3-col">
+        <div>
+            {% for message in messages %}
                 <div class="w3-panel w3-{{ message.tags }} w3-border w3-display-container ">
                     <span onclick="this.parentElement.style.display='none'"
                         class="w3-button w3-large w3-display-topright">&times;</span>
@@ -23,12 +25,59 @@ h1{
                     <p>{{ message }}</p>
                 </div>
                 {% endfor %}
-    <form method="POST">{% csrf_token %}
-        {{form}}
-<button type="submit">Post</button>
-    </form>
-</div>
+            <form method="POST">{% csrf_token %}
+                <label class="w3-large">
+                    <p><b>আপনি কেমন জীবন সঙ্গী খুঁজছেন?</b></p>
+                </label>
+                {{form}}
+                <button type="submit" class="w3-button w3-theme w3-right w3-padding w3-margin w3-round">প্রকাশ
+                    করুন</button>
+            </form>
+        </div>
 
-    <h1>Logged in</h1>
+    </div>
+    
+   
+        
+    
+        
+    <div class="w3-margin w3-border-left w3-border-right w3-third w3-col">
+        {% for p in posts %}
+        <div class="w3-row w3-white w3-card w3-margin">
+            <div class="">
+                <label class="w3-large">
+                    <p class="w3-margin">
+                        <b>{{p.author.first_name}} {{p.author.last_name}} </b>
+                        <br />
+                        <text class=" w3-text-grey">
+                            <small class="w3-margin-right">{{p.author.userprofile.proffession}}</small>
+                        </text>
+                    </p>
+                </label>
+                <div class="w3-light-grey w3-padding w3-justify">
+                    <p class="">
+                       {{p.details}}
+                    </p>
+                </div>
+                
+                {% if p.author != request.user %}
+                        
+                <button type="submit" class="w3-button w3-theme w3-right w3-padding w3-margin w3-round">আমি
+                    আগ্রহী</button>
+                {% endif %}
+                
+                    
+            </div>
+        </div>
+        {% endfor %}
+        <hr />
+
+
+
+    </div> 
+    
+
+</div>
+   
 {% endblock body %}
     
