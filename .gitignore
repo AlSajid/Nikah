@@ -1,0 +1,6 @@
+
+*.pyc
+*.pyc
+accounts/__pycache__/__init__.cpython-39.pyc
+accounts/__pycache__/admin.cpython-39.pyc
+*.pyc
