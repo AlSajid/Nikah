@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from nikah.forms import postForm
 from nikah.models import post
 from django.contrib import messages 
+from notifications.signals import notify
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
@@ -31,3 +32,8 @@ def profile(request):
 def deletePost(request, id):
     post.objects.get(id=id).delete()
     return redirect('profile')
+
+def interest(request, id):
+    Post = post.objects.get(id=id)
+    notify.send(request.user, recipient = post.author,  verb=f''' <a href="/otherprofile/{request.user.username}/">{request.user.first_name} {request.user.last_name}</a>'''+"আগ্রহ প্রকাশ করেছেন ।")
+    return redirect('home')

@@ -6,5 +6,6 @@ urlpatterns = [
     path('home', views.home, name = "home"),
     path('profile', views.profile, name = "profile"),
     path('postDelete/<int:id>/', views.deletePost, name = "deletePost"),
+    path('interest/<int:id>/', views.interest, name = "interest"),
 
 ]

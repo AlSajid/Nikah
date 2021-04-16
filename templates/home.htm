@@ -3,28 +3,47 @@
 
 
 {% block css %}
-h1{
-    margin-top:100px;
+
+.body{
+margin-top:50px;
+display:flex;
 }
-.form{
-    margin-top:50px;
+
+.postForm{
+position : fixed;
+}
+.nameAndPhoto{
+    display:flex;
+    justify-content:space-between;
+}
+.photo{
+    width:10%;
+    
+}
+@media only screen and (max-width: 600px){
+    .body{
+        flex-direction:column;
+    }
+    .postForm{
+        position:relative;
+    }
 }
 {% endblock css %}
-    
+
 
 {% block body %}
 
-<div class="w3-row form">
-    <div class="w3-card w3-margin w3-padding w3-white w3-third w3-round w3-col">
-        <div>
+<div class="w3-row body ">
+    <div class="w3-margin w3-padding  w3-white w3-third w3-round w3-col  ">
+        <div class="postForm w3-card w3-padding">
             {% for message in messages %}
-                <div class="w3-panel w3-{{ message.tags }} w3-border w3-display-container ">
-                    <span onclick="this.parentElement.style.display='none'"
-                        class="w3-button w3-large w3-display-topright">&times;</span>
+            <div class="w3-panel w3-{{ message.tags }} w3-border w3-display-container ">
+                <span onclick="this.parentElement.style.display='none'"
+                    class="w3-button w3-large w3-display-topright">&times;</span>
 
-                    <p>{{ message }}</p>
-                </div>
-                {% endfor %}
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
             <form method="POST">{% csrf_token %}
                 <label class="w3-large">
                     <p><b>আপনি কেমন জীবন সঙ্গী খুঁজছেন?</b></p>
@@ -36,37 +55,42 @@ h1{
         </div>
 
     </div>
-    
-   
-        
-    
-        
+
     <div class="w3-margin w3-border-left w3-border-right w3-third w3-col">
         {% for p in posts %}
         <div class="w3-row w3-white w3-card w3-margin">
             <div class="">
-                <label class="w3-large">
-                    <p class="w3-margin">
-                        <b>{{p.author.first_name}} {{p.author.last_name}} </b>
-                        <br />
-                        <text class=" w3-text-grey">
-                            <small class="w3-margin-right">{{p.author.userprofile.proffession}}</small>
-                        </text>
-                    </p>
+                <label class=" nameAndPhoto w3-large">
+                    <div class="name">
+                        <p class="w3-margin">
+                            <b>{{p.author.first_name}} {{p.author.last_name}} </b>
+                            <br />
+                            <text class=" w3-text-grey">
+                                <small class="w3-margin-right">{{p.author.userprofile.proffession}}</small>
+                            </text>
+                        </p>
+                    </div>
+                    <div class="w3-margin photo">
+                        <img src="{{p.author.userprofile.profilePicture.url}}" class="w3-image w3-round "
+                            alt="{{p.author.first_name}} {{p.author.last_name}}">
+                    </div>
                 </label>
-                <div class="w3-light-grey w3-padding w3-justify">
+
+                <div class=" w3-light-grey w3-padding w3-justify">
                     <p class="">
-                       {{p.details}}
+                        {{p.details}}
                     </p>
                 </div>
-                
+
                 {% if p.author != request.user %}
-                        
-                <button type="submit" class="w3-button w3-theme w3-right w3-padding w3-margin w3-round">আমি
+                <a href="/interest/{{p.id}}">
+                    <button type="submit" class="w3-button w3-theme w3-right w3-padding w3-margin w3-round">আমি
                     আগ্রহী</button>
-                {% endif %}
+                </a>
                 
-                    
+                {% endif %}
+
+
             </div>
         </div>
         {% endfor %}
@@ -74,10 +98,21 @@ h1{
 
 
 
-    </div> 
-    
+    </div>
+
+    <div class="w3-margin w3-padding  w3-white w3-quarter w3-round w3-col w3-right ">
+        <div class="postForm w3-card w3-padding">
+
+            <form method="POST">{% csrf_token %}
+
+                {{form}}
+                <button type="submit" class="w3-button w3-theme w3-right w3-padding w3-margin w3-round">প্রকাশ
+                    করুন</button>
+            </form>
+        </div>
+
+    </div>
 
 </div>
-   
+
 {% endblock body %}
-    
