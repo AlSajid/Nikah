@@ -33,18 +33,17 @@
 
 
 <section class="w3-light-grey">
-
-
     <div class="w3-auto">
-        <div class="w3-row w3-auto w3-border w3-padding-64">
-            <div class="w3-col l3 w3-content w3-margin w3-card">
+        <div class="w3-row w3-auto w3-border w3-padding-64 w3-white w3-margin w3-card">
+            <div class="w3-col l2 w3-content w3-margin w3-border">
                 <img src="{{user.userprofile.profilePicture.url}}" class="w3-image" >
             </div>
-            <div class=" w3-col l7 w3-margin w3-padding-16">
+            <div class=" w3-col l7 w3-margin-left w3-padding-16 w3-leftbar">
                 <div class="w3-margin">
-                    <h3 class="w3-xxlarge">{{request.user.first_name}} {{request.user.last_name}}</h3>
-                    <p class="w3-large">{{user.userprofile.bio}}</p>
-                    <table class="w3-large w3-padding-64 w3-table w3-half">
+                    <h3 class="w3-xxlarge"><b>{{request.user.first_name}} {{request.user.last_name}}</b></h3>
+                    <h4 class="w3-large">{{user.userprofile.bio}}</h4>
+
+                    <table class="w3-large w3-padding-64 w3-margin w3-bordered w3-table w3-half">
                         <tr>
                             <td><b>জাতীয়তা</b></td>
                             <td>{{user.userprofile.nationality}}</td>
@@ -79,16 +78,16 @@
 
             </div>
             <div class="w3-center">
-                <a href="/accounts/editProfile"><button class="w3-button  w3-theme-d2 w3-margin ">প্রোফাইল ইডিট
+                <a href="/accounts/editProfile"><button class="w3-btn  w3-theme-d2 w3-margin ">প্রোফাইল ইডিট
                         করুন</button></a>
             </div>
 
         </div>
-        <div class="w3-padding-small w3-center">
-            <div class="w3-block w3-border">
-                <h2 class="w3-xlarge">গ্যালারি</h2>
+        <div class="w3-padding w3-center w3-white w3-card w3-margin">
+            <div class="w3-block w3-topbar w3-bottombar">
+                <h2 class="w3-xlarge">ছবি</h2>
             </div>
-            <div class=" galleryImages">
+            <div class=" galleryImages w3-border">
                 <div class="images">
                     <img src="{{user.userprofile.galleryPicOne.url}}" class="w3-image l1" />
                 </div>
@@ -98,40 +97,33 @@
                 <div class="images">
                     <img src="{{user.userprofile.galleryPicThree.url}}" class="w3-image l1" />
                 </div>  
-                <div class="images">
+                <div class="images w3-padding">
                     <img src="{{user.userprofile.galleryPicFour.url}}" class="w3-image l1" />
                 </div>
             </div>
         </div>
+        <div class="w3-padding w3-center w3-white w3-card w3-margin">
+            <div class="w3-block w3-topbar w3-bottombar">
+                <h2 class="w3-xlarge">পোস্ট</h2>
+            </div>
+            <div class="w3-padding ">
+                {% for post in user.post.all %}      
+                <div class="w3-leftbar w3-border-theme w3-left-align w3-padding w3-margin w3-border">
+                    <h6 class="w3-left w3-text-grey w3-small">{{post.creatDate}}</h6>
+                    <br />
+                    <hr>
+                    <a href="/postDelete/{{post.id}}"><button class="w3-btn w3-theme w3-small w3-right">Delete</button></a>
+                    <p class="w3-text-dark-grey">{{post.details}}</p>
+                    
+                </div>
+                
+                {% endfor %}
+            </div>
+            
+        </div>
 
     </div>
-<div class="posts">
-    <h1>Posts</h1>
-    
-    {% for post in user.post.all %}
-    <div class="w3-container">
- 
-        <div class="w3-card-4" style="width:50%;">
-          <header class="w3-container w3-blue">
-            
-            <p>{{post.title}}</p>
-            
-          </header>
-      
-          <div class="w3-container">
-            <p>{{post.details}}</p>
-          </div>
-      
-          <footer class="w3-container w3-blue">
-            <h5 class="w3-left">{{post.creatDate}}</h5>
-            <a href="/postDelete/{{post.id}}"><button class="w3-button w3-red w3-right">Delete</button></a>
-            
-          </footer>
-        </div>
-      </div><hr>
-    {% endfor %}
-        
-</div>
+
 </section>
 
 {% endblock body %}
