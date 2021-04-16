@@ -1,13 +1,15 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2&display=swap" rel="stylesheet">
+
 
     <title>
     {% block title %}
@@ -15,32 +17,34 @@
     {% endblock title %}
     </title>
     <style>
-
-
+        body {
+            font-family: 'Baloo Da 2', cursive;
+        }
  {% block css %}
         
     {% endblock css %}
     </style>
     
-   
-        
 </head>
-<body>
+<body class="w3-light-grey">
 
     
     {% if user.is_authenticated %}
     <div class="w3-top">
         <div class="w3-bar w3-theme w3-card">
-            <a href="/home" class="w3-bar-item w3-large w3-button w3-wide">নিকাহ</a>
+            <a href="/home" class="w3-bar-item w3-large w3-btn w3-theme w3-card w3-wide w3-animate-top">নিকাহ</a>
             <div class="w3-dropdown-hover  w3-right w3-large">
-                <button class="w3-button">স্বাগতম {{request.user.first_name}}</button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a href="/profile" class="w3-bar-item w3-button">
-                        <span class="material-icons-outlined">face</span>প্রোফাইল
+                <button class="w3-btn w3-theme w3-animate-right">স্বাগতম {{request.user.first_name}}</button>
+                <div class="w3-dropdown-content w3-bar-block ">
+                    <a href="/profile" class="w3-bar-item w3-btn w3-theme w3-animate-right">
+                        <i class="material-icons">account_circle</i> প্রোফাইল
                     </a>
-                  <a href="/notifications" class="w3-bar-item w3-button">প্রস্তাবসমূহ</a>
-                  <a href="/accounts/logout" class="w3-bar-item w3-button">লগ আউট</a>
-                  
+                    <a href="/notifications" class="w3-bar-item w3-btn w3-theme w3-animate-right">
+                        <i class="material-icons">local_offer</i> প্রস্তাবসমূহ
+                    </a>
+                    <a href="/accounts/logout" class="w3-bar-item w3-btn w3-theme w3-animate-right">
+                        <i class="material-icons">logout</i> লগ আউট
+                    </a>
                 </div>
             </div>
         </div>
@@ -51,9 +55,9 @@
 {% else %}
     <div class="w3-top">
         <div class="w3-bar w3-theme w3-card">
-            <a href="/" class="w3-bar-item w3-large w3-button w3-wide">নিকাহ</a>
+            <a href="/" class="w3-bar-item w3-large w3-btn w3-wide">নিকাহ</a>
             <a href="/accounts/login">
-                <button class="w3-bar-item w3-button w3-right w3-large">লগইন</button>
+                <button class="w3-bar-item w3-btn w3-right w3-large">লগইন</button>
             </a>
         </div>
     </div>
@@ -64,7 +68,7 @@
     {% endblock body %}
         
 
-    <footer class="w3-block w3-theme">
+    <footer class="w3-block w3-theme-dark w3-padding">
         <small>© সর্বসত্ত্ব সংরক্ষিত ২০২১</small>
     </footer>
 </body>

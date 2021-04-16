@@ -17,69 +17,99 @@
 
 <body class="w3-light-grey">
 
-    <div class="w3-top">
-        <div class="w3-bar w3-theme w3-card ">
-            <a href="index.html" class="w3-bar-item w3-large w3-button w3-wide">নিকাহ</a>
-            <a href="login.html">
-                <button class="w3-bar-item w3-button w3-right w3-large">লগ আউট</button>
-            </a>
-        </div>
+    <div class="w3-row">
+        <form action="editProfile" method="POST" enctype="multipart/form-data" class="w3-container">
+
+            <input type="hidden" name="csrfmiddlewaretoken"
+                value="VyP06XwaH2OKh15fGnSCBeOx6FeowDZNVnscfVYNOKdXPfuekqUZT1nocXC5qER9">
+            <div class="w3-col l4 w3-card w3-white w3-padding w3-margin">
+                <label for="id_profilePicture">ProfilePicture:</label>
+                Currently: <a href="/media/profilepics/default.jpg">profilepics/default.jpg</a><br>
+                Change:
+                <input type="file" name="profilePicture" accept="image/*" id="id_profilePicture">
+
+                <label for="id_galleryPicOne">GalleryPicOne:</label>
+                Currently: <a href="/media/profilepics/default.jpg">profilepics/default.jpg</a><br>
+                Change:
+                <input type="file" name="galleryPicOne" accept="image/*" id="id_galleryPicOne">
+                <label for="id_galleryPicTwo">GalleryPicTwo:</label>
+                Currently: <a href="/media/profilepics/default.jpg">profilepics/default.jpg</a><br>
+                Change:
+                <input type="file" name="galleryPicTwo" accept="image/*" id="id_galleryPicTwo">
+
+                <label for="id_galleryPicThree">GalleryPicThree:</label></th>
+                Currently: <a href="/media/profilepics/default.jpg">profilepics/default.jpg</a><br>
+                Change:
+                <input type="file" name="galleryPicThree" accept="image/*" id="id_galleryPicThree">
+
+                <label for="id_galleryPicFour">GalleryPicFour:</label>
+                Currently: <a href="/media/profilepics/default.jpg">profilepics/default.jpg</a><br>
+                Change:
+                <input type="file" name="galleryPicFour" accept="image/*" id="id_galleryPicFour">
+                <div class="w3-container w3-padding-16">
+                    <label for="id_profession">পেশা</label>
+                    <input class="w3-input w3-light-grey" type="text" name="profession" maxlength="200" required
+                        id="id_profession">
+
+                </div>
+                <div class="w3-container w3-padding-16">
+                    <label for="id_bio">আপনার সম্পর্কে</label>
+                    <textarea style="resize:none" class="w3-input w3-light-grey" type="text" name="bio" rows="5"
+                        maxlength="300" required id="id_bio"></textarea>
+
+                </div>
+            </div>
+            <div class="w3-col l3 w3-white w3-card w3-padding w3-margin">
+                <div class="w3-container w3-padding-16">
+                    <label for="id_height">উচ্চতা</label>
+                    <br />
+                    <input class="w3-input w3-light-grey w3-half" placeholder="ফুট" type="number" required
+                        id="id_height" min=1 max=12>
+                    <input class="w3-input w3-light-grey w3-half" placeholder="ইঞ্চি" type="number" required
+                        id="id_height" min=1 max=12>
+
+                </div>
+                <div class="w3-container w3-padding-16">
+                    <label for="id_weight">ওজন</label></th>
+                    <input class="w3-input w3-light-grey" type="number" name="weight" required id="id_weight" min=20
+                        max=1000>
+
+                </div>
+                <div class="w3-container w3-padding-16">
+                    <label for="gender">লিঙ্গ</label>
+                    <select name="gender" class="w3-light-grey w3-input">
+                        <option value="1">পুরুষ</option>
+                        <option value="2">মহিলা</option>
+                        <option value="3">অন্যান্য</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="w3-col l3 w3-white w3-card w3-padding w3-margin">
+
+                <div class="w3-container w3-padding-16">
+                    <label for="id_dateOfBirth">জন্মদিন</label>
+                    <input class="w3-input w3-light-grey" type="date" name="dateOfBirth" required id="id_dateOfBirth">
+
+                </div>
+                <div class="w3-container w3-padding-16">
+                    <label for="id_religion">ধর্ম</label></th>
+                    <input class="w3-input w3-light-grey" type="text" name="religion" value="ইসলাম" maxlength="50"
+                        required id="id_religion"></td>
+
+                </div>
+                <div class="w3-container w3-padding-16">
+                    <label for="id_nationality">জাতীয়তা</label>
+                    <input class="w3-input w3-light-grey" type="text" name="nationality" maxlength="100" required
+                        id="id_nationality">
+                </div>
+
+            </div>
+            <button type="submit">সংরক্ষণ করুন</button>
     </div>
+    </form>
 
-    <div class="w3-auto">
-        <div class="w3-row w3-auto w3-border w3-padding-64">
-            <div class="w3-col l3 w3-content w3-margin w3-card">
-                <img src="images/4.jpg" class="w3-image" />
-            </div>
-            <div class=" w3-col l7 w3-margin w3-padding-16">
-                <div class="w3-margin">
-                    <h3 class="w3-xxlarge">ফারদিন মাহমুদ</h3>
-                    <p class="w3-large"><b>Hotel Chain</b> এ <b> Manager</b> পদে কর্মরত আছি</p>
-
-                    <table class="w3-large w3-padding-64 w3-table w3-half">
-                        <tr>
-                            <td><b>জাতীয়তা</b></td>
-                            <td>বাংলাদেশী</td>
-                        </tr>
-                        <tr>
-                            <td><b>উচ্চতা</b></td>
-                            <td>৫' ১০"</td>
-                        </tr>
-                        <tr>
-                            <td><b>ওজন</b></td>
-                            <td> ৭৩ কেজি</td>
-                        </tr>
-                        <tr>
-                            <td><b>ধর্ম</b></td>
-                            <td>ইসলাম</td>
-                        </tr>
-                        <tr>
-                            <td><b>বর্ণ</b></td>
-                            <td>বাদামী</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="w3-padding-small w3-center">
-            <div class="w3-block w3-border">
-                <h2 class="w3-xlarge">গ্যালারি</h2>
-            </div>
-            <div class=" w3-padding-small">
-                <div class="w3-col l3 w3-content w3-padding-small">
-                    <img src="images/5.jpg" class="w3-image l1" />
-                </div>
-                <div class="w3-col l3 w3-content w3-padding-small">
-                    <img src="images/6.jpg" class="w3-image l1" />
-                </div>
-                <div class="w3-col l3 w3-content w3-padding-small">
-                    <img src="images/7.jpg" class="w3-image l1" />
-                </div>  
-                <div class="w3-col l3 w3-content w3-padding-small">
-                    <img src="images/8.jpg" class="w3-image l1" />
-                </div>
-            </div>
-        </div>
     </div>
 
 
