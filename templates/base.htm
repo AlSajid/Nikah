@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-red.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <title>
     {% block title %}
@@ -34,7 +35,9 @@
             <div class="w3-dropdown-hover  w3-right w3-large">
                 <button class="w3-button">স্বাগতম {{request.user.first_name}}</button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                  <a href="/profile" class="w3-bar-item w3-button">প্রোফাইল</a>
+                    <a href="/profile" class="w3-bar-item w3-button">
+                        <span class="material-icons-outlined">face</span>প্রোফাইল
+                    </a>
                   <a href="/notifications" class="w3-bar-item w3-button">প্রস্তাবসমূহ</a>
                   <a href="/accounts/logout" class="w3-bar-item w3-button">লগ আউট</a>
                   
